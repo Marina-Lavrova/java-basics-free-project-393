@@ -31,13 +31,20 @@ public class PasswordGenerator {
             alphabet += SPECIAL;
         }
 
-        long current = seed;
+        /*long current = seed;
 
         for (int i = 0; i < length; i++) {
             int index = (int) (current % alphabet.length());
             current = nextRandom(current);
 
             result.append(alphabet.charAt(index));
+        }*/
+
+        long current = nextRandom(seed);  // сдвиг до первого символа
+        for (int i = 0; i < length; i++) {
+            int index = (int) (current % alphabet.length());
+            result.append(alphabet.charAt(index));
+            current = nextRandom(current);
         }
         return result.toString();
     }
