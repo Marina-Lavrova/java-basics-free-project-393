@@ -88,6 +88,6 @@ public class PasswordGenerator {
             case 3: result = "Средний"; break;
             default: result = "Слабый"; break;
         }
-        return result + " (оценка " + score + " из 5)";
+        return result + " (пароль оценка " + score + " из 5)";
     }
 }
