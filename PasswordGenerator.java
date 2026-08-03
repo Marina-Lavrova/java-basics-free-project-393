@@ -41,4 +41,41 @@ public class PasswordGenerator {
             }
             return result.toString();
     }
+    public static String checkPassword(String password){
+        int score = 0;
+    
+        boolean hasLower = false, hasUpper = false, hasDigit = false, hasSpecial = false;
+
+        if (password.length() >= 8) score++;
+
+        for (char c : password.toCharArray()) {
+            if (!hasLower && LOWERCASE.indexOf(c) >= 0) {
+                hasLower = true;
+                score++;
+            } else if (!hasUpper && UPPERCASE.indexOf(c) >= 0) {
+                hasUpper = true;
+                score++;
+            } else if (!hasDigit && DIGITS.indexOf(c) >= 0) {
+                hasDigit = true;
+                score++;
+            } else if (!hasSpecial && SPECIAL.indexOf(c) >= 0) {
+                hasSpecial = true;
+                score++;
+            }
+            
+            if (hasLower && hasUpper && hasDigit && hasSpecial) {
+                break;
+            }
+        }
+
+
+        String result;
+        switch (score) {
+            case 5 -> result = "Очень надёжный";
+            case 4 -> result = "Надёжный";
+            case 3 -> result = "Средний";
+            default -> result = "Слабый";
+        }
+        return result + " (оценка "+score+" из 5)";
+    }
 }
